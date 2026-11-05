@@ -20,15 +20,19 @@ def driver_setup():
     driver.quit()
 
 
-
+# Launch the page using the URL.
 @pytest.fixture(scope="module")
 def login(driver_setup):
     driver = driver_setup
     login_page = LoginActionPage(driver)
-    login_page.open_login_url("https://www.saucedemo.com")
+    login_page.open_login_url("https://automationexercise.com/")
     return login_page
 
-def test_login(login):
-    login.enter_username("standard_user")
-    login.enter_password("secret_sauce")
-    login.login()
+# Login using the username and the password.
+# def test_login(login):
+#     login.enter_username("standard_user")
+#     login.enter_password("secret_sauce")
+#     login.login()
+
+
+

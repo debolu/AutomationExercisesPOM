@@ -8,7 +8,6 @@ from selenium.webdriver.common.by import By
 
 from identity.loginLocator.loginLocatorPage import LoginActionLocator
 
-# url = "https://www.saucedemo.com/"
 
 class LoginActionPage:
 
@@ -17,24 +16,28 @@ class LoginActionPage:
 
     def open_login_url(self, url):
         self.driver.get(url)
-
-    def enter_username(self, username):
         element = WebDriverWait(self.driver, 10).until(
-            ec.presence_of_element_located(LoginActionLocator.USERNAME)
+            ec.visibility_of_element_located(LoginActionLocator.HOME_NAV_LINK)
         )
-        element.send_keys(username)
+        element.is_displayed()
 
-    def enter_password(self, password):
-        element = WebDriverWait(self.driver, 10).until(
-            ec.presence_of_element_located(LoginActionLocator.PASSWORD)
-        )
-        element.send_keys(password)
-
-    def login(self):
-        element = WebDriverWait(self.driver, 10).until(
-            ec.presence_of_element_located(LoginActionLocator.LOGIN)
-        )
-        element.click()
+    # def enter_username(self, username):
+    #     element = WebDriverWait(self.driver, 10).until(
+    #         ec.presence_of_element_located(LoginActionLocator.USERNAME)
+    #     )
+    #     element.send_keys(username)
+    #
+    # def enter_password(self, password):
+    #     element = WebDriverWait(self.driver, 10).until(
+    #         ec.presence_of_element_located(LoginActionLocator.PASSWORD)
+    #     )
+    #     element.send_keys(password)
+    #
+    # def login(self):
+    #     element = WebDriverWait(self.driver, 10).until(
+    #         ec.presence_of_element_located(LoginActionLocator.LOGIN)
+    #     )
+    #     element.click()
         time.sleep(5)
 
 
