@@ -59,7 +59,7 @@ def test_signup(signup):
     signup.assert_logged_in_as_signup_name_text(Config.SIGNUP_NAME)
     signup.delete_account()
     signup.assert_account_deleted()
-    # signup.click_continue_btn()
+    signup.click_continue_btn()
 
 
 

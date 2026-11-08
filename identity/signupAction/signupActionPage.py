@@ -202,12 +202,6 @@ class SignupActionPage:
         )
         assert element.is_displayed()
 
-        element = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(SignupActionLocator.CONTINUE_BTN)
-        )
-        element.click()
-
-
         time.sleep(5)
 
 
