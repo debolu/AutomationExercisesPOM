@@ -16,11 +16,55 @@ class LoginActionPage:
 
     def open_login_url(self, url):
         self.driver.get(url)
+
+    def assert_home_page_loads(self):
         element = WebDriverWait(self.driver, 10).until(
             ec.visibility_of_element_located(LoginActionLocator.HOME_NAV_LINK)
         )
-        element.is_displayed()
+        assert element.is_displayed()
 
+    def click_signup_login(self):
+        element = WebDriverWait(self.driver, 10).until(
+            ec.visibility_of_element_located(LoginActionLocator.SIGNUP_LOGIN)
+        )
+        element.click()
+
+    # assert new user signup text is present.
+    def assert_new_signup_text(self):
+        print(self.driver.current_url)
+        element = WebDriverWait(self.driver, 10).until(
+            ec.visibility_of_element_located(LoginActionLocator.NEW_SIGNUP_TEXT)
+        )
+        print("Text found:", element.text)
+        print("Displayed:", element.is_displayed())
+        assert element.is_displayed()
+
+    def enter_name(self, name):
+        element = WebDriverWait(self.driver, 10).until(
+            ec.visibility_of_element_located(LoginActionLocator.NAME)
+        )
+        element.send_keys(name)
+
+    def enter_email(self, email):
+        element = WebDriverWait(self.driver, 10).until(
+            ec.visibility_of_element_located(LoginActionLocator.EMAIL)
+        )
+        element.send_keys(email)
+
+    def signup(self):
+        element = WebDriverWait(self.driver, 10).until(
+            ec.visibility_of_element_located(LoginActionLocator.SIGNUP)
+        )
+        element.click()
+
+    def assert_enter_account_information_text(self):
+        element = WebDriverWait(self.driver, 10).until(
+            ec.visibility_of_element_located(LoginActionLocator.ENTER_ACCOUNT_INFORMATION)
+        )
+        assert element.is_displayed()
+
+
+    # Test login flow
     # def enter_username(self, username):
     #     element = WebDriverWait(self.driver, 10).until(
     #         ec.presence_of_element_located(LoginActionLocator.USERNAME)

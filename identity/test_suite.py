@@ -21,12 +21,27 @@ def driver_setup():
 
 
 # Launch the page using the URL.
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def login(driver_setup):
     driver = driver_setup
     login_page = LoginActionPage(driver)
     login_page.open_login_url("https://automationexercise.com/")
     return login_page
+
+# Assert that the home page loads
+def test_home_page_loads(login):
+    login.assert_home_page_loads()
+
+def test_signup(login):
+    login.click_signup_login()
+    login.assert_new_signup_text()
+    login.enter_name("Adebolu")
+    login.enter_email("tantether@tiffincrane.com")
+    login.signup()
+    login.assert_enter_account_information_text()
+
+
+
 
 # Login using the username and the password.
 # def test_login(login):
