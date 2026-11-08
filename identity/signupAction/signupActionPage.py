@@ -6,26 +6,26 @@ from selenium.webdriver.support import expected_conditions as ec
 
 from selenium.webdriver.common.by import By
 
-from identity.loginLocator.loginLocatorPage import LoginActionLocator
+from identity.signupLocator.signupLocatorPage import SignupActionLocator
 
 
-class LoginActionPage:
+class SignupActionPage:
 
     def __init__(self, driver):
         self.driver = driver
 
-    def open_login_url(self, url):
+    def open_signup_url(self, url):
         self.driver.get(url)
 
     def assert_home_page_loads(self):
         element = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(LoginActionLocator.HOME_NAV_LINK)
+            ec.visibility_of_element_located(SignupActionLocator.HOME_NAV_LINK)
         )
         assert element.is_displayed()
 
     def click_signup_login(self):
         element = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(LoginActionLocator.SIGNUP_LOGIN)
+            ec.visibility_of_element_located(SignupActionLocator.SIGNUP_LOGIN)
         )
         element.click()
 
@@ -33,7 +33,7 @@ class LoginActionPage:
     def assert_new_signup_text(self):
         print(self.driver.current_url)
         element = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(LoginActionLocator.NEW_SIGNUP_TEXT)
+            ec.visibility_of_element_located(SignupActionLocator.NEW_SIGNUP_TEXT)
         )
         print("Text found:", element.text)
         print("Displayed:", element.is_displayed())
@@ -41,25 +41,25 @@ class LoginActionPage:
 
     def enter_name(self, name):
         element = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(LoginActionLocator.NAME)
+            ec.visibility_of_element_located(SignupActionLocator.NAME)
         )
         element.send_keys(name)
 
     def enter_email(self, email):
         element = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(LoginActionLocator.EMAIL)
+            ec.visibility_of_element_located(SignupActionLocator.EMAIL)
         )
         element.send_keys(email)
 
     def signup(self):
         element = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(LoginActionLocator.SIGNUP)
+            ec.visibility_of_element_located(SignupActionLocator.SIGNUP)
         )
         element.click()
 
     def assert_enter_account_information_text(self):
         element = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(LoginActionLocator.ENTER_ACCOUNT_INFORMATION)
+            ec.visibility_of_element_located(SignupActionLocator.ENTER_ACCOUNT_INFORMATION)
         )
         assert element.is_displayed()
 

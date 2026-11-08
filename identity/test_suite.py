@@ -3,7 +3,9 @@ from selenium import webdriver
 # from config.config import Config
 from selenium.webdriver.chrome.options import Options
 
-from identity.loginAction.loginActionPage import LoginActionPage
+from config import config
+from config.config import Config
+from identity.signupAction.signupActionPage import SignupActionPage
 
 
 # from identity.LoginAction.loginPage import LoginPage
@@ -22,23 +24,23 @@ def driver_setup():
 
 # Launch the page using the URL.
 @pytest.fixture(scope="function")
-def login(driver_setup):
+def signup(driver_setup):
     driver = driver_setup
-    login_page = LoginActionPage(driver)
-    login_page.open_login_url("https://automationexercise.com/")
-    return login_page
+    signup_page = SignupActionPage(driver)
+    signup_page.open_signup_url(Config.BASE_URL)
+    return signup_page
 
 # Assert that the home page loads
-def test_home_page_loads(login):
-    login.assert_home_page_loads()
+def test_home_page_loads(signup):
+    signup.assert_home_page_loads()
 
-def test_signup(login):
-    login.click_signup_login()
-    login.assert_new_signup_text()
-    login.enter_name("Adebolu")
-    login.enter_email("tantether@tiffincrane.com")
-    login.signup()
-    login.assert_enter_account_information_text()
+def test_signup(signup):
+    signup.click_signup_login()
+    signup.assert_new_signup_text()
+    signup.enter_name(Config.SIGNUP_NAME)
+    signup.enter_email(Config.SIGNUP_EMAIL)
+    signup.signup()
+    signup.assert_enter_account_information_text()
 
 
 
