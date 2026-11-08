@@ -187,7 +187,7 @@ class SignupActionPage:
             ec.visibility_of_element_located(SignupActionLocator.LOGGED_IN_AS_FIRSTNAME_TEXT)
         )
 
-        expected_text = f" Logged in as {name}"
+        expected_text = f"Logged in as {name}"
         assert element.text == expected_text
 
     def delete_account (self):

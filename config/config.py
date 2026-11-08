@@ -1,7 +1,12 @@
+import faker
+
+fake = faker.Faker()
+
 class Config:
     BASE_URL = "https://automationexercise.com/"
     SIGNUP_NAME = "Opeyemi"
-    SIGNUP_EMAIL = "tantether01@tiffincrane.com"
+    # SIGNUP_EMAIL = "tantether01@tiffincrane.com"
+    SIGNUP_EMAIL = fake.email()
     PASSWORD = "P@ssw0rd"
     DOB = [
         {"day": "16", "month": "May", "year": "1978"},
