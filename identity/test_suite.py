@@ -1,9 +1,7 @@
 import pytest
 from selenium import webdriver
-# from config.config import Config
 from selenium.webdriver.chrome.options import Options
 
-from config import config
 from config.config import Config
 from identity.signupAction.signupActionPage import SignupActionPage
 
@@ -13,7 +11,7 @@ from identity.signupAction.signupActionPage import SignupActionPage
 @pytest.fixture(scope="module")
 def driver_setup():
     chrome_options = Options()
-    # chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+    chrome_options.add_argument("--headless")  # Run Chrome in headless mode
     chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration (to avoid errors in headless mode)
     driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(30)
@@ -41,6 +39,31 @@ def test_signup(signup):
     signup.enter_email(Config.SIGNUP_EMAIL)
     signup.signup()
     signup.assert_enter_account_information_text()
+    signup.choose_title()
+    signup.enter_password(Config.PASSWORD)
+    signup.enter_dob(Config.DOB)
+    signup.accept_newsletter()
+    signup.accept_offer()
+    signup.enter_first_name(Config.SIGNUP_NAME)
+    signup.enter_last_name(Config.LAST_NAME)
+    signup.enter_company_name(Config.COMPANY)
+    signup.enter_address(Config.ADDRESS, Config.ADDRESS_2)
+    signup.enter_country(Config.COUNTRY)
+    signup.enter_state(Config.STATE)
+    signup.enter_city(Config.CITY)
+    signup.enter_zipcode(Config.ZIPCODE)
+    signup.enter_phone_number(Config.MOBILE_NUMBER)
+    signup.create_account_btn()
+    signup.assert_account_created()
+    signup.click_continue_btn()
+    signup.assert_logged_in_as_signup_name_text(Config.SIGNUP_NAME)
+    signup.delete_account()
+    signup.assert_account_deleted()
+    # signup.click_continue_btn()
+
+
+
+
 
 
 
